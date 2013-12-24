@@ -8,5 +8,17 @@
 # You can use `rake secret` to generate a secure secret key.
 
 # Make sure your secret_key_base is kept private
-# if you're sharing your code publicly.
-Rightnowpal::Application.config.secret_key_base = '3246521e9dd935dd31a8b665aec3bd2fcea005e06007bbbb5cc6c051cd7acfd3e30a915e78dd71135138af8c364436278108d409807d2a54766faf1305b96a01'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if Fle.exist?(token_file)
+    File.read(token_file).chomp
+  else
+    token = SecureRandm.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Rightnowpal::Application.config.secret_key_base = secure_token
+
