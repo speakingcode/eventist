@@ -16,7 +16,7 @@ def secure_token
   if File.exist?(token_file)
     File.read(token_file).chomp
   else
-    token = SecureRandm.hex(64)
+    token = SecureRandom.hex(64)
     File.write(token_file, token)
     token
   end
