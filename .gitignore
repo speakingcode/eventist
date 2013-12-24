@@ -36,6 +36,7 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 
 .idea
+.secret
 
 #Ignore vim swap files
 *.swo
